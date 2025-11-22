@@ -1,16 +1,23 @@
-const express = require('express');
+const express = require("express");
+const path = require("path");
+const NamespaceRouter = require("./routes/Namespace");
 
-const app = express()
+const app = express();
 
-//  BodyParser
+//* BodyParser
+app.use(express.urlencoded({ extended: true, limit: "50mb" }));
+app.use(express.json({ limit: "50mb" }));
 
-//  CORS Policy
+//* CORS Policy
 
-// Template Engine
+//* Template Engine
 
-// Routes
+//* Static Folder
+app.use(express.static(path.join(__dirname, "public")));
 
-// 404 Error handler
+//* Routes
+app.use("/api/namespaces", NamespaceRouter);
+
+//* 404 Error handler
 
 module.exports = app;
-
